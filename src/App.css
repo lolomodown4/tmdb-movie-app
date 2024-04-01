@@ -108,13 +108,49 @@ li {
   margin: 15% auto; /* 15% from the top and centered */
   padding: 20px;
   border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+  width: 60%; /* Could be more or less, depending on screen size */
+  position: relative;
+}
+
+.modal-overview{
+  /* width: 500px; */
+}
+
+.modal-image{
+ justify-content: center;
+ align-items: center;
+ display: flex;
+}
+
+.modal-title{
+  text-align: center;
+}
+
+.modal-overview{
+  text-align: left;
+}
+
+.trailer-button{
+  text-align: center;
+  border: solid 1px black;
+  padding: 5px;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+.trailer-button > a{
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  display: block;
 }
 
 /* The Close Button */
 .close {
   color: #aaa;
-  float: right;
+  position: absolute;
+  right: 10px;
+  top: -5px;
   font-size: 28px;
   font-weight: bold;
 }

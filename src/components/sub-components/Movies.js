@@ -14,6 +14,10 @@ const Movies = () => {
   /* modal related */
   const [showDetailsModal, setIsShowDetailsModal] = useState(false);
   const [overview, setOverview] = useState(null);
+  const [modalImage, setModalImage] = useState(null);
+  const [modalTitle, setModalTitle] = useState(null);
+  const [modalReleaseDate, setModalReleaseDate] = useState(null);
+  const [modalId, setModalId] = useState(null);
 
   /* pagination related */
   const [currentPage, setCurrentPage] = useState(1);
@@ -32,14 +36,12 @@ const Movies = () => {
 
   useEffect(() => {
     /* Reset */
-    /* setIsMoviesFetched(false); */
+    setIsMoviesFetched(false);
     fetchMovies();
   }, [currentPage]);
 
   useEffect(() => {
     /* fetch */
-    console.log(genresChecked);
-    console.log(movies);
     fetchMovies();
   }, [genresChecked]);
 
@@ -80,7 +82,6 @@ const Movies = () => {
         link = link + `%2C${genresChecked[i].id}`;
       }
     }
-    console.log(link);
     return link;
   };
 
@@ -117,6 +118,11 @@ const Movies = () => {
   const showModal = (e) => {
     setIsShowDetailsModal(!showDetailsModal);
     setOverview(e.overview);
+    setModalImage(e.backdrop_path);
+    setModalTitle(e.title);
+    setModalReleaseDate(e.release_date);
+    setModalId(e.id);
+    console.log(e);
   };
 
   return (
@@ -142,6 +148,10 @@ const Movies = () => {
           showDetailsModal={showDetailsModal}
           setIsShowDetailsModal={setIsShowDetailsModal}
           overview={overview}
+          imageSource={modalImage}
+          title={modalTitle}
+          releaseDate={modalReleaseDate}
+          id={modalId}
         />
       )}
     </div>

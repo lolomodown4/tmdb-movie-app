@@ -10,6 +10,10 @@ const Trending = () => {
   /* Modal related */
   const [showDetailsModal, setIsShowDetailsModal] = useState(false);
   const [overview, setOverview] = useState(null);
+  const [modalImage, setModalImage] = useState(null);
+  const [modalTitle, setModalTitle] = useState(null);
+  const [modalReleaseDate, setModalReleaseDate] = useState(null);
+  const [modalId, setModalId] = useState(null);
 
   /* pagination related */
   const [currentPage, setCurrentPage] = useState(1);
@@ -28,6 +32,11 @@ const Trending = () => {
       setTotalPageCount(trendingData.total_pages);
     }
   }, [trendingData]);
+
+  /* delete after finishing the modal */
+  /* useEffect(() => {
+    console.log(trendingData);
+  }, [showDetailsModal]); */
 
   const options = {
     method: "GET",
@@ -59,7 +68,14 @@ const Trending = () => {
 
   const showModal = (e) => {
     setIsShowDetailsModal(!showDetailsModal);
+
+    console.log(e);
+    /* get the instance details clicked */
     setOverview(e.overview);
+    setModalImage(e.backdrop_path);
+    setModalTitle(e.title);
+    setModalReleaseDate(e.release_date);
+    setModalId(e.id);
   };
 
   return (
@@ -70,6 +86,10 @@ const Trending = () => {
             showDetailsModal={showDetailsModal}
             setIsShowDetailsModal={setIsShowDetailsModal}
             overview={overview}
+            imageSource={modalImage}
+            title={modalTitle}
+            releaseDate={modalReleaseDate}
+            id={modalId}
           />
         )}
       </div>
