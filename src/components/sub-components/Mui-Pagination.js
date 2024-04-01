@@ -1,7 +1,11 @@
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 
-const BasicPagination = ({ setCurrentPage, totalPageCount }) => {
+const BasicPagination = ({
+  defaultPageCount,
+  setCurrentPage,
+  totalPageCount,
+}) => {
   const handleChange = (event, value) => {
     setCurrentPage(value);
   };
@@ -12,6 +16,7 @@ const BasicPagination = ({ setCurrentPage, totalPageCount }) => {
         <Pagination
           count={totalPageCount}
           onChange={handleChange}
+          page={defaultPageCount}
           color="primary"
           shape="rounded"
           variant="outlined"

@@ -19,7 +19,8 @@ const Search = () => {
   const [overview, setOverview] = useState(null);
 
   /* pagination related */
-  const [currentPage, setCurrentPage] = useState(1);
+  const [pageForMovie, setPageForMovie] = useState(1);
+  const [pageforTV, setPageForTV] = useState(1);
   const [totalPageCount, setTotalPageCount] = useState(null);
 
   const [isSearchButtonClicked, setIsSearchButtonClicked] = useState(false);
@@ -49,7 +50,7 @@ const Search = () => {
     } else {
       fetchTV_SeriesByQuery();
     }
-  }, [currentPage, isSearchButtonClicked]);
+  }, [pageForMovie, pageforTV, isSearchButtonClicked]);
 
   const handleMovieClick = () => {
     setIsMovieSelected(true);
@@ -78,7 +79,7 @@ const Search = () => {
   const fetchMovieByQuery = async () => {
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/search/movie?query=${request}&include_adult=false&language=en-US&page=${currentPage}`,
+        `https://api.themoviedb.org/3/search/movie?query=${request}&include_adult=false&language=en-US&page=${pageForMovie}`,
         options
       );
       if (!response.ok) {
@@ -97,7 +98,7 @@ const Search = () => {
   const fetchTV_SeriesByQuery = async () => {
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/search/tv?query=${request}&include_adult=false&language=en-US&page=${currentPage}`,
+        `https://api.themoviedb.org/3/search/tv?query=${request}&include_adult=false&language=en-US&page=${pageforTV}`,
         options
       );
       if (!response.ok) {
@@ -158,8 +159,9 @@ const Search = () => {
             </div>
 
             <BasicPagination
-              setCurrentPage={setCurrentPage}
+              setCurrentPage={setPageForMovie}
               totalPageCount={totalPageCount}
+              page={pageForMovie}
             />
           </div>
         )}
@@ -174,8 +176,9 @@ const Search = () => {
             </div>
 
             <BasicPagination
-              setCurrentPage={setCurrentPage}
+              setCurrentPage={setPageForTV}
               totalPageCount={totalPageCount}
+              page={pageforTV}
             />
           </div>
         )}
