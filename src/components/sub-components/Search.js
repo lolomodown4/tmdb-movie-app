@@ -17,6 +17,11 @@ const Search = () => {
   /* modal related */
   const [showDetailsModal, setIsShowDetailsModal] = useState(false);
   const [overview, setOverview] = useState(null);
+  const [modalImage, setModalImage] = useState(null);
+  const [modalTitle, setModalTitle] = useState(null);
+  const [modalReleaseDate, setModalReleaseDate] = useState(null);
+  const [modalId, setModalId] = useState(null);
+  const [modalMediaType, setModalMediaType] = useState(null);
 
   /* pagination related */
   const [pageForMovie, setPageForMovie] = useState(1);
@@ -114,9 +119,21 @@ const Search = () => {
     }
   };
 
-  const showModal = (each) => {
+  const showModal = (e) => {
+    console.log(e);
     setIsShowDetailsModal(!showDetailsModal);
-    setOverview(each.overview);
+    setOverview(e.overview);
+    setModalId(e.id);
+    setModalImage(e.backdrop_path);
+    if (isMovieSelected) {
+      setModalMediaType("movie");
+      setModalTitle(e.title);
+      setModalReleaseDate(e.release_date);
+    } else if (isTvSelected) {
+      setModalMediaType("tv");
+      setModalTitle(e.name);
+      setModalReleaseDate(e.first_air_date);
+    }
   };
 
   return (
@@ -188,6 +205,11 @@ const Search = () => {
             showDetailsModal={showDetailsModal}
             setIsShowDetailsModal={setIsShowDetailsModal}
             overview={overview}
+            media_type={modalMediaType}
+            id={modalId}
+            title={modalTitle}
+            releaseDate={modalReleaseDate}
+            imageSource={modalImage}
           />
         )}
       </div>
