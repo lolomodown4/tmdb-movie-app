@@ -14,6 +14,7 @@ const Trending = () => {
   const [modalTitle, setModalTitle] = useState(null);
   const [modalReleaseDate, setModalReleaseDate] = useState(null);
   const [modalId, setModalId] = useState(null);
+  const [modalMediaType, setModalMediaType] = useState(null);
 
   /* pagination related */
   const [currentPage, setCurrentPage] = useState(1);
@@ -73,9 +74,18 @@ const Trending = () => {
     /* get the instance details clicked */
     setOverview(e.overview);
     setModalImage(e.backdrop_path);
-    setModalTitle(e.title);
-    setModalReleaseDate(e.release_date);
-    setModalId(e.id);
+
+    if (e.media_type === "movie") {
+      setModalMediaType("movie");
+      setModalTitle(e.title);
+      setModalReleaseDate(e.release_date);
+      setModalId(e.id);
+    } else if (e.media_type === "tv") {
+      setModalMediaType("tv");
+      setModalTitle(e.name);
+      setModalReleaseDate(e.first_air_date);
+      setModalId(e.id);
+    }
   };
 
   return (
@@ -90,6 +100,7 @@ const Trending = () => {
             title={modalTitle}
             releaseDate={modalReleaseDate}
             id={modalId}
+            media_type={modalMediaType}
           />
         )}
       </div>

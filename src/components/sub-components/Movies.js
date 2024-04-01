@@ -152,6 +152,7 @@ const Movies = () => {
           title={modalTitle}
           releaseDate={modalReleaseDate}
           id={modalId}
+          media_type={"movie"}
         />
       )}
     </div>

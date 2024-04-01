@@ -104,17 +104,16 @@ li {
 }
 
 .modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
+  background-color: #31363F;
+  margin: 10% auto; /* 15% from the top and centered */
   padding: 20px;
-  border: 1px solid #888;
+  border: 1px solid #EEEEEE;
   width: 60%; /* Could be more or less, depending on screen size */
   position: relative;
+  border-radius: 5px;
+  color: #EEEEEE;
 }
 
-.modal-overview{
-  /* width: 500px; */
-}
 
 .modal-image{
  justify-content: center;
@@ -132,17 +131,26 @@ li {
 
 .trailer-button{
   text-align: center;
-  border: solid 1px black;
+  border: solid 1px #EEEEEE;
   padding: 5px;
   margin: 5px;
   border-radius: 5px;
 }
 
+.trailer-button:hover{
+  border: solid 1px black;
+
+}
+
 .trailer-button > a{
   text-decoration: none;
-  color: black;
+  color: #EEEEEE;
   font-weight: bold;
   display: block;
+}
+
+.trailer-button > a:hover{
+  color: black;
 }
 
 /* The Close Button */

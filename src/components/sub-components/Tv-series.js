@@ -13,6 +13,10 @@ const TvSeries = () => {
   /* modal related */
   const [showDetailsModal, setIsShowDetailsModal] = useState(false);
   const [overview, setOverview] = useState(null);
+  const [modalImage, setModalImage] = useState(null);
+  const [modalTitle, setModalTitle] = useState(null);
+  const [modalReleaseDate, setModalReleaseDate] = useState(null);
+  const [modalId, setModalId] = useState(null);
 
   /* pagination related */
   const [currentPage, setCurrentPage] = useState(1);
@@ -105,6 +109,10 @@ const TvSeries = () => {
   const showModal = (e) => {
     setIsShowDetailsModal(!showDetailsModal);
     setOverview(e.overview);
+    setModalImage(e.backdrop_path);
+    setModalTitle(e.title);
+    setModalReleaseDate(e.release_date);
+    setModalId(e.id);
   };
 
   return (
@@ -128,6 +136,11 @@ const TvSeries = () => {
           showDetailsModal={showDetailsModal}
           setIsShowDetailsModal={setIsShowDetailsModal}
           overview={overview}
+          imageSource={modalImage}
+          title={modalTitle}
+          releaseDate={modalReleaseDate}
+          id={modalId}
+          media_type={"tv"}
         />
       )}
     </div>

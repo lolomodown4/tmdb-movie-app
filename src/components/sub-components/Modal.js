@@ -8,6 +8,9 @@ const Modal = ({
   title,
   releaseDate,
   id,
+
+  /* added new */
+  media_type,
 }) => {
   const [key, setKey] = useState(null);
 
@@ -30,7 +33,7 @@ const Modal = ({
   const fetchKey = async () => {
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`,
+        `https://api.themoviedb.org/3/${media_type}/${id}/videos?language=en-US`,
         options
       );
 
@@ -61,8 +64,7 @@ const Modal = ({
           />
         </div>
         <div className="modal-title">
-          {/* error other pages */}
-          {title} ({releaseDate?.substring(0, 4)})
+          {title} {releaseDate?.substring(0, 4)}
         </div>
         <p className="modal-overview">{overview ? overview : "Some text"}</p>
         <div className="carousell">carousell</div>
