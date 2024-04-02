@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Carousel from "./Carousel";
 
 const Modal = ({
   imageSource,
@@ -67,7 +68,10 @@ const Modal = ({
           {title} {releaseDate?.substring(0, 4)}
         </div>
         <p className="modal-overview">{overview ? overview : "Some text"}</p>
-        <div className="carousell">carousell</div>
+        <div className="carousell">
+          <p>Casts</p>
+          <Carousel id={id} media_type={media_type} />
+        </div>
 
         {key && (
           <div className="trailer-button">

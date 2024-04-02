@@ -344,4 +344,47 @@ li {
   justify-content: space-around;
 }
 
+/* carousel try */
 
+
+.carousell-holder{
+  position: relative;
+  height: 25vh;
+  border: solid 1px #EEEEEE;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.carousell-image{
+  display: flex;
+  margin: 0 50px;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.carousell-image > div >img {
+  height: 150px;
+
+}
+
+.left-button{
+  background-color: #31363F;
+  border: none;
+  position: absolute;
+  left: 1px;
+}
+
+.right-button{
+  background-color: #31363F;
+  border: none;
+  position: absolute;
+  right: 1px;
+}
+
+/* carousel */
+
+.carousell {
+  margin: 5px;
+  margin-bottom: 10px;
+}
