@@ -74,11 +74,13 @@ const Modal = ({
         </div>
 
         {key && (
-          <div className="trailer-button">
-            <a href={`https://www.youtube.com/watch?v=${key}`} target="_blank">
-              Watch trailer
-            </a>
-          </div>
+          <a
+            href={`https://www.youtube.com/watch?v=${key}`}
+            target="_blank"
+            className="trailer-button"
+          >
+            Watch trailer
+          </a>
         )}
       </div>
     </div>

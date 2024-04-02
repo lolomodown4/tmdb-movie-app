@@ -3,6 +3,7 @@ import Clickable from "./ClickableGenre";
 import TitleCard from "./Title-Card";
 import BasicPagination from "./Mui-Pagination";
 import Modal from "./Modal";
+import FadeLoader from "react-spinners/FadeLoader";
 
 const TvSeries = () => {
   const [genresTV, setGenresTV] = useState(null);
@@ -20,6 +21,9 @@ const TvSeries = () => {
 
   /* pagination related */
   const [currentPage, setCurrentPage] = useState(1);
+
+  /* loading state variable */
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     fetchGenresForTV();
@@ -64,6 +68,7 @@ const TvSeries = () => {
   };
 
   const fetchTV_series = async () => {
+    setIsLoading(true);
     try {
       const response = await fetch(linkHandler(), options);
       if (!response.ok) {
@@ -72,6 +77,7 @@ const TvSeries = () => {
 
       const data = await response.json();
       setTv_series(data);
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -118,9 +124,15 @@ const TvSeries = () => {
   return (
     <div className="tv-series-container">
       <div className="genres">{genresTV && showTV_Genres()}</div>
-      <div className="tv-series">
-        {tv_series && <TitleCard data={tv_series} showModal={showModal} />}
-      </div>
+      {isLoading ? (
+        <div className="loading">
+          <FadeLoader color="#EEEEEE" />
+        </div>
+      ) : (
+        <div className="tv-series">
+          {tv_series && <TitleCard data={tv_series} showModal={showModal} />}
+        </div>
+      )}
 
       <div>
         {tv_series && (

@@ -68,7 +68,7 @@ const Carousel = ({ id, media_type }) => {
   return (
     <div className="carousell-holder">
       <button className="left-button" onClick={prevCasts}>
-        <KeyboardArrowLeftIcon sx={{ backgroundColor: "transparent" }} />
+        <KeyboardArrowLeftIcon sx={{ color: "#EEEEEE" }} />
       </button>
 
       <div className="carousell-image">
@@ -86,7 +86,7 @@ const Carousel = ({ id, media_type }) => {
       </div>
 
       <button className="right-button" onClick={nextCasts}>
-        <KeyboardArrowRightIcon />
+        <KeyboardArrowRightIcon sx={{ color: "#EEEEEE" }} />
       </button>
     </div>
   );

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Modal from "./Modal";
 import BasicPagination from "./Mui-Pagination";
 import TitleCard from "./Title-Card";
+import FadeLoader from "react-spinners/FadeLoader";
 
 const Trending = () => {
   const [trendingData, setTrendingData] = useState(null);
@@ -20,6 +21,9 @@ const Trending = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPageCount, setTotalPageCount] = useState(null);
 
+  /* loading state variable */
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -34,11 +38,6 @@ const Trending = () => {
     }
   }, [trendingData]);
 
-  /* delete after finishing the modal */
-  /* useEffect(() => {
-    console.log(trendingData);
-  }, [showDetailsModal]); */
-
   const options = {
     method: "GET",
     headers: {
@@ -48,6 +47,7 @@ const Trending = () => {
   };
 
   const fetchData = async () => {
+    setIsLoading(true);
     try {
       const response = await fetch(
         `https://api.themoviedb.org/3/trending/all/day?language=en-US&page=${currentPage}`,
@@ -62,6 +62,7 @@ const Trending = () => {
 
       setTrendingData(data);
       setIsData(true);
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -74,22 +75,37 @@ const Trending = () => {
     /* get the instance details clicked */
     setOverview(e.overview);
     setModalImage(e.backdrop_path);
+    setModalId(e.id);
 
     if (e.media_type === "movie") {
       setModalMediaType("movie");
       setModalTitle(e.title);
       setModalReleaseDate(e.release_date);
-      setModalId(e.id);
     } else if (e.media_type === "tv") {
       setModalMediaType("tv");
       setModalTitle(e.name);
       setModalReleaseDate(e.first_air_date);
-      setModalId(e.id);
     }
   };
 
   return (
     <div className="trending-container">
+      {isLoading ? (
+        <div className="loading">
+          <FadeLoader color="#EEEEEE" />
+        </div>
+      ) : (
+        <div className="title-cards-container">
+          {isData && (
+            <TitleCard
+              data={trendingData}
+              showModal={showModal}
+              isMovie={false}
+            />
+          )}
+        </div>
+      )}
+
       <div>
         {showDetailsModal && (
           <Modal
@@ -101,15 +117,6 @@ const Trending = () => {
             releaseDate={modalReleaseDate}
             id={modalId}
             media_type={modalMediaType}
-          />
-        )}
-      </div>
-      <div className="title-cards-container">
-        {isData && (
-          <TitleCard
-            data={trendingData}
-            showModal={showModal}
-            isMovie={false}
           />
         )}
       </div>

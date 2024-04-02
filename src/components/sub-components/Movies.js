@@ -3,6 +3,7 @@ import TitleCard from "./Title-Card";
 import Modal from "./Modal";
 import BasicPagination from "./Mui-Pagination";
 import Clickable from "./ClickableGenre";
+import FadeLoader from "react-spinners/FadeLoader";
 
 const Movies = () => {
   const [genres, setGenres] = useState(null);
@@ -22,6 +23,9 @@ const Movies = () => {
   /* pagination related */
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPageCount, setTotalPageCount] = useState(null);
+
+  /* loading state variable */
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     fetchGenres();
@@ -86,6 +90,7 @@ const Movies = () => {
   };
 
   const fetchMovies = async () => {
+    setIsLoading(true);
     try {
       const response = await fetch(linkHandler(), options);
 
@@ -97,6 +102,7 @@ const Movies = () => {
 
       setMovies(data);
       setIsMoviesFetched(true);
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -128,11 +134,17 @@ const Movies = () => {
   return (
     <div className="movies-container">
       <div className="genres">{genres && showGenres()}</div>
-      <div className="movies">
-        {isMoviesFetched && (
-          <TitleCard data={movies} showModal={showModal} isMovie={true} />
-        )}
-      </div>
+      {isLoading ? (
+        <div className="loading">
+          <FadeLoader color="#EEEEEE" />
+        </div>
+      ) : (
+        <div className="movies">
+          {isMoviesFetched && (
+            <TitleCard data={movies} showModal={showModal} isMovie={true} />
+          )}
+        </div>
+      )}
 
       <div>
         {totalPageCount && (
