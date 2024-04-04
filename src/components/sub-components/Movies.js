@@ -136,7 +136,7 @@ const Movies = () => {
       <div className="genres">{genres && showGenres()}</div>
       {isLoading ? (
         <div className="loading">
-          <FadeLoader color="#EEEEEE" />
+          <FadeLoader color="#20b2aa" />
         </div>
       ) : (
         <div className="movies">

@@ -125,6 +125,7 @@ li {
   position: relative;
   border-radius: 5px;
   color: #EEEEEE;
+  animation: fade-down 0.3s linear 
 }
 
 
@@ -134,12 +135,30 @@ li {
  display: flex;
 }
 
+.modal-image > img {
+  border-radius: 5px;
+}
+
 .modal-title{
   text-align: center;
 }
 
 .modal-overview{
   text-align: left;
+}
+
+/* modal animation */
+@keyframes fade-down {
+  0%{
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+  100%{
+    opacity: 1;
+  }
 }
 
 .trailer-button{
@@ -151,11 +170,12 @@ li {
   color: white;
   text-decoration: none;
   display: block;
+  transition: 0.3s;
 }
 
 .trailer-button:hover{
-  border: solid 1px black;
-  color: black;
+  border: solid 1px lightseagreen;
+  color: lightseagreen;
 }
 
 
@@ -168,11 +188,12 @@ li {
   top: -5px;
   font-size: 28px;
   font-weight: bold;
+  transition: 0.3s;
 }
 
 .close:hover,
 .close:focus {
-  color: black;
+  color: lightseagreen;
   text-decoration: none;
   cursor: pointer;
 }
@@ -423,6 +444,7 @@ li {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  border-radius: 5px;
 }
 
 .carousell-image{
@@ -430,10 +452,14 @@ li {
   margin: 0 50px;
   justify-content: space-evenly;
   width: 100%;
+
 }
 
 .carousell-image > div >img {
   height: 150px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
 }
 
 .left-button{
@@ -441,6 +467,14 @@ li {
   border: none;
   position: absolute;
   left: 1px;
+  height: 100%;
+  color: #EEEEEE;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.left-button:hover{
+  background-color: rgba(32, 178, 170, .6);
 }
 
 .right-button{
@@ -448,6 +482,14 @@ li {
   border: none;
   position: absolute;
   right: 1px;
+  height: 100%;
+  color: #EEEEEE;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.right-button:hover{
+  background-color: rgba(32, 178, 170, .6);
 }
 
 /* carousel */

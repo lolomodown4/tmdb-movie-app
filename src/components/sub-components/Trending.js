@@ -92,7 +92,7 @@ const Trending = () => {
     <div className="trending-container">
       {isLoading ? (
         <div className="loading">
-          <FadeLoader color="#EEEEEE" />
+          <FadeLoader color="#20b2aa" />
         </div>
       ) : (
         <div className="title-cards-container">

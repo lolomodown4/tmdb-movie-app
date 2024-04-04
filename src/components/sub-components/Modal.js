@@ -67,7 +67,9 @@ const Modal = ({
         <div className="modal-title">
           {title} {releaseDate?.substring(0, 4)}
         </div>
-        <p className="modal-overview">{overview ? overview : "Some text"}</p>
+        <p className="modal-overview">
+          {overview ? overview : "No overview stated"}
+        </p>
         <div className="carousell">
           <p>Casts</p>
           <Carousel id={id} media_type={media_type} />
@@ -78,6 +80,7 @@ const Modal = ({
             href={`https://www.youtube.com/watch?v=${key}`}
             target="_blank"
             className="trailer-button"
+            rel="noreferrer"
           >
             Watch trailer
           </a>

@@ -184,7 +184,7 @@ const Search = () => {
     if (isLoading) {
       return (
         <div className="loading">
-          <FadeLoader color="#EEEEEE" />
+          <FadeLoader color="#20b2aa" />
         </div>
       );
     } else if (!isLoading && isMovieSelected && moviesData) {
@@ -209,7 +209,7 @@ const Search = () => {
     if (isLoading) {
       return (
         <div className="loading">
-          <FadeLoader color="#EEEEEE" />
+          <FadeLoader color="#20b2aa" />
         </div>
       );
     } else if (!isLoading && isTvSelected && tvSeriesData) {
@@ -249,10 +249,7 @@ const Search = () => {
             sx={{ color: "lightseagreen", fontSize: "5rem" }}
           />
         </div>
-        <div className="no-result-text">
-          {" "}
-          Sorry, we could't find any results
-        </div>
+        <div className="no-result-text">Sorry, we could't find any results</div>
       </div>
     );
   };

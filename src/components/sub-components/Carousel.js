@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import { FadeLoader } from "react-spinners";
 
 const Carousel = ({ id, media_type }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const [creditsData, setCreditsData] = useState(null);
+
+  /* loading */
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     fetchCreditsData();
@@ -38,6 +42,7 @@ const Carousel = ({ id, media_type }) => {
       const data = await response.json();
 
       setCreditsData(data);
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -72,17 +77,23 @@ const Carousel = ({ id, media_type }) => {
       </button>
 
       <div className="carousell-image">
-        {creditsData?.cast
-          .slice(currentIndex, currentIndex + castPerPage)
-          .map((each) => (
-            <div key={each.cast_id}>
-              <img
-                src={`https://image.tmdb.org/t/p/w300/${each.profile_path}`}
-                alt={each.name}
-              />
-              <p>{each.name}</p>
-            </div>
-          ))}
+        {isLoading ? (
+          <div className="loading">
+            <FadeLoader color="#20b2aa" width={2} height={8} />
+          </div>
+        ) : (
+          creditsData?.cast
+            .slice(currentIndex, currentIndex + castPerPage)
+            .map((each) => (
+              <div key={each.cast_id}>
+                <img
+                  src={`https://image.tmdb.org/t/p/w300/${each.profile_path}`}
+                  alt={each.name}
+                />
+                <p>{each.name}</p>
+              </div>
+            ))
+        )}
       </div>
 
       <button className="right-button" onClick={nextCasts}>
