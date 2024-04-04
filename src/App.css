@@ -192,6 +192,11 @@ li {
   color : lightseagreen
 }
 
+.selected-link {
+  text-decoration: underline;
+  color: lightseagreen;
+}
+
 .MuiPagination-ul > li > button{
   color: #EEEEEE;
   border-color: #EEEEEE;
@@ -215,6 +220,7 @@ li {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  margin-top: 10px;
 }
 
 .genres-button{
@@ -227,6 +233,7 @@ li {
   padding: 5px;
   border-radius: 5px;
   border: solid 1px #222831;
+  transition: 0.3s;
 }
 
 .genres-button:hover{
@@ -242,6 +249,7 @@ li {
   margin-top: 10px;
   margin-left: 20px;
   margin-right: 20px;
+
 }
 
 .genres-button-clicked{
@@ -267,6 +275,7 @@ li {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  margin-top: 10px;
 }
 
 /* search */
@@ -324,6 +333,7 @@ li {
   cursor: pointer;
   font-weight: bold;
   font-size:xx-large ;
+  text-decoration: underline;
 }
 
 .movieOrTv{
