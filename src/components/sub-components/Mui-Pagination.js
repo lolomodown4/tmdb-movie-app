@@ -17,6 +17,7 @@ const BasicPagination = ({ page, setCurrentPage, totalPageCount }) => {
           color="primary"
           shape="rounded"
           variant="outlined"
+          sx={{ color: "lightseagreen" }}
         />
       </Stack>
     </div>
