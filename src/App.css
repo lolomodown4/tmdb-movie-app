@@ -317,6 +317,7 @@ li {
   font-weight: bold;
   font-size:xx-large ;
   transition: 0.3s;
+  width: 200px;
 }
 
 
@@ -334,6 +335,7 @@ li {
   font-weight: bold;
   font-size:xx-large ;
   text-decoration: underline;
+  width: 200px;
 }
 
 .movieOrTv{
@@ -353,6 +355,47 @@ li {
   display: grid;
   grid-template-rows: 7.5% 7.5% 85%;
 }
+
+.directions-container{
+  display: flex;
+  margin-top: 50px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.direction-icon-container{
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.search-directions, .no-result-text{
+  color: #EEEEEE;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem ;
+  font-style: italic;
+  color: lightseagreen;
+  
+}
+
+
+.no-result-container{
+  margin-top: 50px;
+  width: 100%;
+}
+
+.no-result-icon{
+  display: flex;
+  justify-content: center;
+}
+
+.no-result-text {
+  margin-top: 20px;
+}
+
+
 
 .search-contents {
   overflow-y: scroll;
@@ -415,4 +458,31 @@ li {
   justify-content: center;
   align-items: center;
   height: 100%;
+}
+
+
+/* scrollbar css */
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgba(238,238,238, 0.7); 
+  border-radius: 20px;
+  margin: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(32, 178, 170, .8); 
 }

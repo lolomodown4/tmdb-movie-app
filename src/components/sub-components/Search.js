@@ -4,6 +4,8 @@ import TitleCard from "./Title-Card";
 import BasicPagination from "./Mui-Pagination";
 import Modal from "./Modal";
 import { FadeLoader } from "react-spinners";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import SentimentDissatisfiedOutlinedIcon from "@mui/icons-material/SentimentDissatisfiedOutlined";
 
 const Search = () => {
   const [input, setInput] = useState("");
@@ -34,6 +36,8 @@ const Search = () => {
   /* loading */
   const [isLoading, setIsLoading] = useState(false);
 
+  /* if there are no results */
+  const [hasResults, setHasResults] = useState(true);
   useEffect(() => {
     if (isMovieSelected === true) {
       fetchMovieByQuery();
@@ -81,6 +85,7 @@ const Search = () => {
   };
 
   const fetchMovieByQuery = async () => {
+    setHasResults(true);
     setIsLoading(true);
     try {
       const response = await fetch(
@@ -92,6 +97,11 @@ const Search = () => {
       }
 
       const data = await response.json();
+
+      if (data.total_results === 0) {
+        console.log("data is empty");
+        setHasResults(false);
+      }
 
       setMoviesData(data);
       setIsSearchButtonClicked(false);
@@ -106,6 +116,7 @@ const Search = () => {
 
   const fetchTV_SeriesByQuery = async () => {
     setIsLoading(true);
+    setHasResults(true);
     try {
       const response = await fetch(
         `https://api.themoviedb.org/3/search/tv?query=${request}&include_adult=false&language=en-US&page=${pageforTV}`,
@@ -117,6 +128,11 @@ const Search = () => {
 
       const data = await response.json();
 
+      if (data.total_results === 0) {
+        console.log("data is empty");
+        setHasResults(false);
+      }
+
       setTvSeriesData(data);
       setIsSearchButtonClicked(false);
 
@@ -125,6 +141,25 @@ const Search = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const Directions = () => {
+    return (
+      <div className="directions-container">
+        <div className="direction-icon-container">
+          <InfoOutlinedIcon
+            sx={{
+              fontSize: "4rem",
+              color: "lightseagreen",
+            }}
+          />
+        </div>
+
+        <div className="search-directions">
+          *Write the title/name then Choose media type to begin the search
+        </div>
+      </div>
+    );
   };
 
   const showModal = (e) => {
@@ -198,6 +233,30 @@ const Search = () => {
     }
   };
 
+  const showResults = () => {
+    if (isMovieSelected) {
+      return showMovies();
+    } else if (isTvSelected) {
+      return showTvSeries();
+    }
+  };
+
+  const NoResult = () => {
+    return (
+      <div className="no-result-container">
+        <div className="no-result-icon">
+          <SentimentDissatisfiedOutlinedIcon
+            sx={{ color: "lightseagreen", fontSize: "5rem" }}
+          />
+        </div>
+        <div className="no-result-text">
+          {" "}
+          Sorry, we could't find any results
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="search-container">
       <div className="input-bar">
@@ -227,7 +286,8 @@ const Search = () => {
         </button>
       </div>
       <div className="search-contents">
-        {isMovieSelected ? showMovies() : showTvSeries()}
+        {!isMovieSelected && !isTvSelected && <Directions />}
+        {hasResults ? showResults() : <NoResult />}
 
         {showDetailsModal && (
           <Modal
