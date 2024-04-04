@@ -15,7 +15,7 @@
 }
 
 .header > img {
-  height: 60px;
+  height: 50px;
   margin-right: 15px;
 }
 
@@ -363,6 +363,7 @@ li {
 
 .directions-container{
   display: flex;
+  justify-content: center;
   margin-top: 50px;
   margin-left: 20px;
   margin-right: 20px;

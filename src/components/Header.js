@@ -1,4 +1,4 @@
-import logo from "../assets/TMDB_logo.png";
+import logo from "../assets/logo.png";
 const Header = () => {
   return (
     <h1 className="header">
