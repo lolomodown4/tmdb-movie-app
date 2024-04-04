@@ -3,6 +3,7 @@ import { useState } from "react";
 import TitleCard from "./Title-Card";
 import BasicPagination from "./Mui-Pagination";
 import Modal from "./Modal";
+import { FadeLoader } from "react-spinners";
 
 const Search = () => {
   const [input, setInput] = useState("");
@@ -26,33 +27,29 @@ const Search = () => {
   /* pagination related */
   const [pageForMovie, setPageForMovie] = useState(1);
   const [pageforTV, setPageForTV] = useState(1);
-  const [totalPageCount, setTotalPageCount] = useState(null);
+  const [totalPageCount, setTotalPageCount] = useState("");
 
   const [isSearchButtonClicked, setIsSearchButtonClicked] = useState(false);
 
-  useEffect(() => {
-    fetchMovieByQuery();
-    fetchTV_SeriesByQuery();
-  }, []);
+  /* loading */
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    if (moviesData && isMovieSelected) {
+    if (isMovieSelected === true) {
       fetchMovieByQuery();
-      setTotalPageCount(moviesData.total_pages);
     }
-  }, [moviesData, isMovieSelected]);
+  }, [isMovieSelected]);
 
   useEffect(() => {
-    if (tvSeriesData && isTvSelected) {
+    if (isTvSelected) {
       fetchTV_SeriesByQuery();
-      setTotalPageCount(tvSeriesData.total_pages);
     }
-  }, [tvSeriesData, isTvSelected]);
+  }, [isTvSelected]);
 
   useEffect(() => {
     if (isMovieSelected) {
       fetchMovieByQuery();
-    } else {
+    } else if (isTvSelected) {
       fetchTV_SeriesByQuery();
     }
   }, [pageForMovie, pageforTV, isSearchButtonClicked]);
@@ -60,11 +57,13 @@ const Search = () => {
   const handleMovieClick = () => {
     setIsMovieSelected(true);
     setIsTvSelected(false);
+    setIsLoading(true);
   };
 
   const handleTv_SeriesClick = () => {
     setIsTvSelected(true);
     setIsMovieSelected(false);
+    setIsLoading(true);
   };
 
   const handleClick = () => {
@@ -82,6 +81,7 @@ const Search = () => {
   };
 
   const fetchMovieByQuery = async () => {
+    setIsLoading(true);
     try {
       const response = await fetch(
         `https://api.themoviedb.org/3/search/movie?query=${request}&include_adult=false&language=en-US&page=${pageForMovie}`,
@@ -95,12 +95,17 @@ const Search = () => {
 
       setMoviesData(data);
       setIsSearchButtonClicked(false);
+
+      setTotalPageCount(data.total_pages);
+      console.log(data);
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
     }
   };
 
   const fetchTV_SeriesByQuery = async () => {
+    setIsLoading(true);
     try {
       const response = await fetch(
         `https://api.themoviedb.org/3/search/tv?query=${request}&include_adult=false&language=en-US&page=${pageforTV}`,
@@ -114,13 +119,16 @@ const Search = () => {
 
       setTvSeriesData(data);
       setIsSearchButtonClicked(false);
+
+      setTotalPageCount(data.total_pages);
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
     }
   };
 
   const showModal = (e) => {
-    console.log(e);
+    /* console.log(e); */
     setIsShowDetailsModal(!showDetailsModal);
     setOverview(e.overview);
     setModalId(e.id);
@@ -133,6 +141,60 @@ const Search = () => {
       setModalMediaType("tv");
       setModalTitle(e.name);
       setModalReleaseDate(e.first_air_date);
+    }
+  };
+
+  const showMovies = () => {
+    /* console.log(moviesData); */
+    if (isLoading) {
+      return (
+        <div className="loading">
+          <FadeLoader color="#EEEEEE" />
+        </div>
+      );
+    } else if (!isLoading && isMovieSelected && moviesData) {
+      return (
+        <div>
+          <div className="movies">
+            <TitleCard data={moviesData} showModal={showModal} isMovie={true} />
+          </div>
+
+          <BasicPagination
+            setCurrentPage={setPageForMovie}
+            totalPageCount={totalPageCount}
+            page={pageForMovie}
+          />
+        </div>
+      );
+    }
+  };
+
+  const showTvSeries = () => {
+    /* console.log(tvSeriesData); */
+    if (isLoading) {
+      return (
+        <div className="loading">
+          <FadeLoader color="#EEEEEE" />
+        </div>
+      );
+    } else if (!isLoading && isTvSelected && tvSeriesData) {
+      return (
+        <div>
+          <div className="tv-series">
+            <TitleCard
+              data={tvSeriesData}
+              showModal={showModal}
+              isMovie={false}
+            />
+          </div>
+
+          <BasicPagination
+            setCurrentPage={setPageForTV}
+            totalPageCount={totalPageCount}
+            page={pageforTV}
+          />
+        </div>
+      );
     }
   };
 
@@ -165,40 +227,7 @@ const Search = () => {
         </button>
       </div>
       <div className="search-contents">
-        {moviesData && isMovieSelected && (
-          <div>
-            <div className="movies">
-              <TitleCard
-                data={moviesData}
-                showModal={showModal}
-                isMovie={true}
-              />
-            </div>
-
-            <BasicPagination
-              setCurrentPage={setPageForMovie}
-              totalPageCount={totalPageCount}
-              page={pageForMovie}
-            />
-          </div>
-        )}
-        {isTvSelected && tvSeriesData && (
-          <div>
-            <div className="tv-series">
-              <TitleCard
-                data={tvSeriesData}
-                showModal={showModal}
-                isMovie={false}
-              />
-            </div>
-
-            <BasicPagination
-              setCurrentPage={setPageForTV}
-              totalPageCount={totalPageCount}
-              page={pageforTV}
-            />
-          </div>
-        )}
+        {isMovieSelected ? showMovies() : showTvSeries()}
 
         {showDetailsModal && (
           <Modal

@@ -61,6 +61,14 @@ li {
   background-color: #222831;
   border-radius: 5px;
   color: #EEEEEE;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.title-card:hover{
+  background-color:#EEEEEE ;
+  color:#222831 ;
+  transform: scale(1.05)
 }
 
 .vote-average{
@@ -89,6 +97,7 @@ li {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  margin-top: 10px;
 }
 
 .modal {
@@ -176,6 +185,11 @@ li {
 .links{
   color: #EEEEEE;
   text-decoration: none;
+  transition: 0.3s;
+}
+
+.links:hover{
+  color : lightseagreen
 }
 
 .MuiPagination-ul > li > button{
@@ -276,6 +290,8 @@ li {
   background-color: #222831;
   color: #EEEEEE;
   border: solid 1px #222831;
+  transition: 0.3s;
+  cursor: pointer;
 }
 
 .search-button:hover{
@@ -291,6 +307,7 @@ li {
   cursor: pointer;
   font-weight: bold;
   font-size:xx-large ;
+  transition: 0.3s;
 }
 
 
