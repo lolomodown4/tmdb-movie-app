@@ -578,6 +578,25 @@ li {
     justify-content: center;
     align-items: center;
   }
+
+  /* modal */
+  .modal-content{
+    margin:  5% auto; /* 15% from the top and centered */
+    width: 80%; /* Could be more or less, depending on screen size */
+    
+  }
+
+  .modal-image > img {
+    height: 120px;
+  }
+
+  .carousell-image > div >img {
+    height: 100px;
+  }
+
+  .carousell-name{
+    font-size: small;
+  }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -631,14 +650,3 @@ li {
 
 
 
-.modal-content {
-  background-color: #31363F;
-  margin: 5% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #EEEEEE;
-  width: 60%; /* Could be more or less, depending on screen size */
-  position: relative;
-  border-radius: 5px;
-  color: #EEEEEE;
-  animation: fade-down 0.3s linear 
-}

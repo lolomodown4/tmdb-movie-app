@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { FadeLoader } from "react-spinners";
+import { useRef } from "react";
 
 const Carousel = ({ id, media_type }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -48,7 +49,8 @@ const Carousel = ({ id, media_type }) => {
     }
   };
 
-  const castPerPage = 5;
+  const windowSize = useRef(window.innerWidth);
+  const castPerPage = windowSize.current > 768 ? 5 : 2;
 
   const prevCasts = () => {
     setCurrentIndex((prevIndex) => {
@@ -90,7 +92,7 @@ const Carousel = ({ id, media_type }) => {
                   src={`https://image.tmdb.org/t/p/w300/${each.profile_path}`}
                   alt={each.name}
                 />
-                <p>{each.name}</p>
+                <p className="carousell-name">{each.name}</p>
               </div>
             ))
         )}
