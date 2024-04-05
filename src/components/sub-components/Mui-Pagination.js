@@ -1,11 +1,14 @@
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { useRef } from "react";
 
 const BasicPagination = ({ page, setCurrentPage, totalPageCount }) => {
   const handleChange = (event, value) => {
     setCurrentPage(value);
   };
+
+  const windowSize = useRef(window.innerWidth);
 
   const theme = createTheme({
     palette: {
@@ -27,6 +30,8 @@ const BasicPagination = ({ page, setCurrentPage, totalPageCount }) => {
             color="primary"
             shape="rounded"
             variant="outlined"
+            siblingCount={windowSize.current > 768 ? 1 : 0}
+            size={windowSize.current > 768 ? "medium" : "small"}
           />
         </Stack>
       </div>

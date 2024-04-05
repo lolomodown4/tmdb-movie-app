@@ -597,6 +597,11 @@ li {
   .carousell-name{
     font-size: small;
   }
+
+  /* scroll */
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
