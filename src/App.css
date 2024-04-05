@@ -631,13 +631,14 @@ li {
 
 
 
-
-
-/* .input{
-  width: 100%;
-  margin-right: 10px;
-  padding: 10px;
-  background-color: #EEEE;
-  border: none;
+.modal-content {
+  background-color: #31363F;
+  margin: 5% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #EEEEEE;
+  width: 60%; /* Could be more or less, depending on screen size */
+  position: relative;
   border-radius: 5px;
-} */
+  color: #EEEEEE;
+  animation: fade-down 0.3s linear 
+}
