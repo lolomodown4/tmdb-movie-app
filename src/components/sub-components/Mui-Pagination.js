@@ -21,7 +21,7 @@ const BasicPagination = ({ page, setCurrentPage, totalPageCount }) => {
   return (
     <ThemeProvider theme={theme}>
       <div className="pagination">
-        <Stack spacing={2}>
+        <Stack spacing={1}>
           <Pagination
             count={totalPageCount}
             onChange={handleChange}
