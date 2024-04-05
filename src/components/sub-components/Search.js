@@ -6,6 +6,7 @@ import Modal from "./Modal";
 import { FadeLoader } from "react-spinners";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import SentimentDissatisfiedOutlinedIcon from "@mui/icons-material/SentimentDissatisfiedOutlined";
+import { useRef } from "react";
 
 const Search = () => {
   const [input, setInput] = useState("");
@@ -57,6 +58,8 @@ const Search = () => {
       fetchTV_SeriesByQuery();
     }
   }, [pageForMovie, pageforTV, isSearchButtonClicked]);
+
+  const windowSize = useRef([window.innerHeight, window.innerWidth]);
 
   const handleMovieClick = () => {
     setIsMovieSelected(true);
@@ -149,7 +152,7 @@ const Search = () => {
         <div className="direction-icon-container">
           <InfoOutlinedIcon
             sx={{
-              fontSize: "4rem",
+              fontSize: windowSize > 768 ? "4rem" : "2.5rem",
               color: "lightseagreen",
             }}
           />
