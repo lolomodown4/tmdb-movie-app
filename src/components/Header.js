@@ -62,13 +62,18 @@ const Header = () => {
 
   return (
     <h1 className="header">
-      {windowSize.current < 992 && (
-        <button className="burger-menu" onClick={handleClick}>
-          <MenuOutlinedIcon />
-        </button>
-      )}
-      <img src={logo} alt="logo"></img>
-      <div> Find movie/TV Details here </div>
+      <div className="burger-menu-container">
+        {windowSize.current < 992 && (
+          <button className="burger-menu" onClick={handleClick}>
+            <MenuOutlinedIcon />
+          </button>
+        )}
+      </div>
+
+      <div className="title-header">
+        <img src={logo} alt="logo"></img>
+        <div> Find movie/TV Details here </div>
+      </div>
 
       {/* eto yung choices na palalabasin */}
       {isBurgerClicked && (

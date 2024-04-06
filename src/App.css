@@ -6,14 +6,19 @@
 }
 
 .header{
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 15% 70% 15%;
   background-color: #222831 ;
   color: #EEEEEE;
 }
 
-.header > img {
+.title-header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header > div> img {
   height: 50px;
   margin-right: 15px;
 }
@@ -540,11 +545,11 @@ li {
 
   /* header */
   .header{
-    font-size: 2.5vh;
+    font-size: 2.0vh;
     height: 10vh;
   }
 
-  .header > img {
+  .header > div >img {
     height: 30px;
     margin-right: 15px;
   } 
@@ -659,7 +664,7 @@ li {
    height: 15vh;
   }
 
-  .header > img {
+  .header > div > img {
     height: 50px;
     margin-right: 15px;
   } 
@@ -675,19 +680,24 @@ li {
 
 
 /* burger menu and its animation */
+.burger-menu-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .burger-menu{
-  position: fixed;
-  left: 10px;
   background-color: transparent;
   border: none;
   color: #EEEEEE;
- 
 }
 
 .burger-close{
   position: absolute;
   right: 10px;
   top: 10px;
+  font-weight: bold;
+  font-size: 1.5rem;
 }
 
 
