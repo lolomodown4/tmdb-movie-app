@@ -116,8 +116,8 @@ const TvSeries = () => {
     setIsShowDetailsModal(!showDetailsModal);
     setOverview(e.overview);
     setModalImage(e.backdrop_path);
-    setModalTitle(e.title);
-    setModalReleaseDate(e.release_date);
+    setModalTitle(e.name);
+    setModalReleaseDate(e.first_air_date);
     setModalId(e.id);
   };
 

@@ -151,6 +151,22 @@ li {
   text-align: left;
 }
 
+.modal-casts-button-container{
+  width: 100%;
+  display: flex;
+ 
+} 
+
+.modal-casts-button{
+  background-color: transparent;
+  padding: 5px;
+  border: 1px solid #EEEEEE;
+  color: #EEEEEE;
+  border-radius: 5px;
+  margin: 5px;
+  width: 100%;
+}
+
 /* modal animation */
 @keyframes fade-down {
   0%{
@@ -670,7 +686,7 @@ li {
   } 
 
   .MuiStack-root > nav> ul > li{
-    margin: 30px;
+    margin: 20px;
   }
   
 }

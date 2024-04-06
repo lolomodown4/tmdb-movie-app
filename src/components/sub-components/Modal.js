@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Carousel from "./Carousel";
 
 const Modal = ({
@@ -14,6 +14,9 @@ const Modal = ({
   media_type,
 }) => {
   const [key, setKey] = useState(null);
+  const [isButtonCastClicked, setIsButtonCastClicked] = useState(false);
+
+  const windowSize = useRef(window.innerWidth);
 
   useEffect(() => {
     if (id) {
@@ -49,6 +52,66 @@ const Modal = ({
     }
   };
 
+  const handleClick = () => {
+    setIsButtonCastClicked(!isButtonCastClicked);
+  };
+
+  const showContent = () => {
+    if (windowSize.current > 992) {
+      return (
+        <>
+          <p className="modal-overview">
+            {overview ? overview : "No overview stated"}
+          </p>
+
+          <div>
+            <div className="carousell">
+              <p>Casts</p>
+              <Carousel id={id} media_type={media_type} />
+            </div>
+
+            {key && (
+              <a
+                href={`https://www.youtube.com/watch?v=${key}`}
+                target="_blank"
+                className="trailer-button"
+                rel="noreferrer"
+              >
+                Watch trailer
+              </a>
+            )}
+          </div>
+        </>
+      );
+    } else if (windowSize.current < 992 && !isButtonCastClicked) {
+      return (
+        <p className="modal-overview">
+          {overview ? overview : "No overview stated"}
+        </p>
+      );
+    } else if (windowSize.current < 992 && isButtonCastClicked) {
+      return (
+        <div>
+          <div className="carousell">
+            <p>Casts</p>
+            <Carousel id={id} media_type={media_type} />
+          </div>
+
+          {key && (
+            <a
+              href={`https://www.youtube.com/watch?v=${key}`}
+              target="_blank"
+              className="trailer-button"
+              rel="noreferrer"
+            >
+              Watch trailer
+            </a>
+          )}
+        </div>
+      );
+    }
+  };
+
   return (
     <div className="modal">
       <div className="modal-content">
@@ -67,23 +130,15 @@ const Modal = ({
         <div className="modal-title">
           {title} {releaseDate?.substring(0, 4)}
         </div>
-        <p className="modal-overview">
-          {overview ? overview : "No overview stated"}
-        </p>
-        <div className="carousell">
-          <p>Casts</p>
-          <Carousel id={id} media_type={media_type} />
-        </div>
 
-        {key && (
-          <a
-            href={`https://www.youtube.com/watch?v=${key}`}
-            target="_blank"
-            className="trailer-button"
-            rel="noreferrer"
-          >
-            Watch trailer
-          </a>
+        {showContent()}
+
+        {windowSize.current < 992 && (
+          <div className="modal-casts-button-container">
+            <button onClick={handleClick} className="modal-casts-button">
+              Show/Hide Casts
+            </button>
+          </div>
         )}
       </div>
     </div>
