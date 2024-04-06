@@ -7,7 +7,6 @@
 
 .header{
   display: flex;
-  height: 15vh;
   justify-content: center;
   align-items: center;
   background-color: #222831 ;
@@ -534,9 +533,15 @@ li {
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
 
+  /* App */
+  .App {
+    grid-template-rows: 10% 90%
+  }
+
   /* header */
   .header{
     font-size: 2.5vh;
+    height: 10vh;
   }
 
   .header > img {
@@ -646,6 +651,10 @@ li {
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
+  .header{
+   height: 15vh;
+  }
+
   .header > img {
     height: 50px;
     margin-right: 15px;
@@ -659,6 +668,55 @@ li {
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {}
+
+
+/* burger menu and its animation */
+.burger-menu{
+  position: fixed;
+  left: 10px;
+  background-color: #222831;
+  border: none;
+  color: #EEEEEE;
+}
+
+.burger-close{
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+
+.burger-categories {
+  background-color: rgba(0,0,0,0.9);
+  height: 100vh;
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.burger-directions {
+  margin-top: 30px;
+  margin-left: 30px;
+  font-size: x-large;
+}
+
+.burger-nav{
+  margin-top: 50px;
+}
+
+.burger-links{
+  list-style: none;
+  padding-inline-start: 0;
+  margin-left: 30px;
+}
+
+.burger-links > li {
+  padding: 15px;
+  border: solid 1px lightseagreen;
+  margin-bottom: 10px;
+}
 
 
 
