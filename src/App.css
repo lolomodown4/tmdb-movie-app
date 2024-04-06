@@ -2,7 +2,7 @@
   box-sizing: border-box;
   height: 100vh;
   display: grid;
-  grid-template-rows: 15% 75% 10%;
+  
 }
 
 .header{
@@ -624,6 +624,10 @@ li {
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
+  .App{
+    grid-template-rows: 15% 75% 10%;
+  }
+
   .header{
     font-size: 4.5vh;
   }
@@ -674,9 +678,10 @@ li {
 .burger-menu{
   position: fixed;
   left: 10px;
-  background-color: #222831;
+  background-color: transparent;
   border: none;
   color: #EEEEEE;
+ 
 }
 
 .burger-close{
@@ -694,6 +699,7 @@ li {
   width: 100%;
   top: 0;
   left: 0;
+  animation: fade-down 0.3s linear;
 }
 
 .burger-directions {
@@ -717,7 +723,5 @@ li {
   border: solid 1px lightseagreen;
   margin-bottom: 10px;
 }
-
-
 
 
