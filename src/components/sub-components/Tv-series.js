@@ -28,6 +28,7 @@ const TvSeries = () => {
   useEffect(() => {
     fetchGenresForTV();
     fetchTV_series();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   /* burahin mamaya */
@@ -39,6 +40,7 @@ const TvSeries = () => {
 
   useEffect(() => {
     fetchTV_series();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [genresChecked, currentPage]);
 
   const options = {

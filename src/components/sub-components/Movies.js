@@ -30,6 +30,7 @@ const Movies = () => {
   useEffect(() => {
     fetchGenres();
     fetchMovies();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -42,11 +43,13 @@ const Movies = () => {
     /* Reset */
     setIsMoviesFetched(false);
     fetchMovies();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage]);
 
   useEffect(() => {
     /* fetch */
     fetchMovies();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [genresChecked]);
 
   const options = {

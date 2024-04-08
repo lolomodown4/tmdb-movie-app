@@ -43,12 +43,14 @@ const Search = () => {
     if (isMovieSelected === true) {
       fetchMovieByQuery();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isMovieSelected]);
 
   useEffect(() => {
     if (isTvSelected) {
       fetchTV_SeriesByQuery();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isTvSelected]);
 
   useEffect(() => {
@@ -57,6 +59,7 @@ const Search = () => {
     } else if (isTvSelected) {
       fetchTV_SeriesByQuery();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pageForMovie, pageforTV, isSearchButtonClicked]);
 
   const windowSize = useRef([window.innerHeight, window.innerWidth]);

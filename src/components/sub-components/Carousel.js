@@ -14,6 +14,7 @@ const Carousel = ({ id, media_type }) => {
 
   useEffect(() => {
     fetchCreditsData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
